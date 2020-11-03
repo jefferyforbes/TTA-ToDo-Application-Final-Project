@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ToDo Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel=" stylesheet" href="style.css">
+    <link rel="stylesheet " href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css " integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2 " crossorigin="anonymous ">
+</head>
+
+<body>
+    <form>
+        <!-- The form below is for the user to input new tasks todo with a choice of varying status. Name, Description, AssignedTo, DueDate, Status) -->
+        <div class="col margin-bottom5">
+            <div class="form-group">
+                <label for="task-name">Name of task:</label>
+                <input type="text" class="form-control" id="userTaskName">
+            </div>
+            <div class="form-group">
+                <label for="task-description">Description:</label>
+                <input type="text" class="form-control" id="userDescription">
+            </div>
+            <div class="form-group">
+                <label for="task-assign">Assign:</label>
+                <input type="text" class="form-control" id="userAssignedTo">
+            </div>
+            <div class="form-group radio-choice">
+                <label for="task-due-date">Due Date:</label>
+                <input type="date" class="form-control" id="userDueDate">
+            </div>
+        </div>
+        </div>
+
+        <!--The radio button choices are below-->
+        <div class="row-lg-1">
+            <div class="row radio-status">
+                <div class="form-group radio-choice">
+                    <input type="radio" name="task-status" value="ToDo" class="form-control task-ToDo" id="userStatus">
+                    <label for="task-ToDo">To Do:</label>
+                </div>
+                <div class="form-group radio-choice">
+                    <input type="radio" name="task-status" value="In Progress" class="form-control task-in-progress" id="userStatus">
+                    <label for="task-in-progress">In Progress:</label>
+                </div>
+                <div class="form-group radio-choice">
+                    <input type="radio" name="task-status" value="review" class="form-control task-review" id="userStatus">
+                    <label for="task-review">Review:</label>
+                </div>
+                <div class="form-group radio-choice">
+                    <input type="radio" name="task-status" value="Done" class="form-control task-done" id="userStatus">
+                    <label for="task-done">Done:</label>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary margin-bottom10" id="taskSubmit">Submit</button>
+    </form>
+    <div class="Taskboard-List row" id="Taskboard-List">
+        <div class="card">
+            <div class="card-header">
+                <h5>TASK</h5>
+            </div>
+            <ul class="list-group list-group-flush card-space">
+                <li class="list-group-item"><span class="card-ref">Name: </span>Cras justo odio</li>
+                <li class="list-group-item"><span class="card-ref">Description: </span>Dapibus ac facilisis in</li>
+                <li class="list-group-item"><span class="card-ref">Assign To: </span>Vestibulum at eros</li>
+                <li class="list-group-item"><span class="card-ref">Due Date: </span>Vessdadaulum at eros</li>
+                <li class="list-group-item"><span class="card-ref">Status: </span>Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary margin-bottom10" id="clear-cards">Clear Cards</button>
+    <footer>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js " integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js " integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s " crossorigin="anonymous "></script>
+        <script src="app.js"></script>
+    </footer>
+</body>
+
+</html>

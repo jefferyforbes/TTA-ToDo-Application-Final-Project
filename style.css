@@ -1,0 +1,69 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 1rem;
+}
+
+.radio-status {
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: space-evenly;
+}
+
+.margin-top5 {
+    margin-top: 5rem;
+}
+
+.margin-top10 {
+    margin-top: 10rem;
+}
+
+.margin-bottom5 {
+    margin-bottom: 5rem;
+}
+
+.margin-bottom10 {
+    margin-bottom: 10rem;
+}
+
+.radio-choice {
+    margin: 0rem .5rem 0 .5rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+}
+
+#clear-cards {
+    margin: 5rem;
+    margin-top: 3rem;
+}
+
+.card {
+    height: auto;
+    display: flex;
+    width: 18rem;
+    margin: 2rem;
+    justify-content: space-between;
+}
+
+.card-ref {
+    font-style: oblique;
+    font-weight: 700;
+}
+
+.Taskboard-List {
+    display: flex;
+    height: auto;
+    margin: 2rem;
+    justify-content: center;
+    overflow-y: hidden;
+    width: 101%;
+    background-color: rgb(68, 67, 67);
+}
