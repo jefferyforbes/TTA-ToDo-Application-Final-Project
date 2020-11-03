@@ -12,6 +12,7 @@
 //     return taskName, description, assignedTo, dueDate, status;
 // };
 
+let taskName, description, assignedTo, dueDate, status;
 
 // The get user input functions is meant to grab the values of the user inputs from the html
 // *** At the moment I am not sure if this code works ****
@@ -19,12 +20,6 @@
 document.querySelector("#taskSubmit").addEventListener('click', function() {
     let taskSubmitBtn = document.querySelector("#taskSubmit");
     const position = "beforeend"
-
-    let taskName = document.querySelector("#userTaskName").value;
-    let description = document.querySelector("#userDescription").value;
-    let assignedTo = document.querySelector("#userAssignedTo").value;
-    let dueDate = document.querySelector("#userDueDate").value;
-    let status = document.querySelector("#userStatus").value;
 
     const newCard = `<div class="card">
     <div class="card-header">
@@ -38,7 +33,6 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
         <li class="list-group-item"><span class="card-ref">Status: </span>${status}</li>
     </ul>`
     let taskBoard = document.querySelector(".Taskboard-List")
-    checkAllValid();
     if (checkAllValid == true) {
         taskBoard.insertAdjacentHTML(position, newCard)
     }
@@ -60,37 +54,40 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
 // the check name assign function is to check that both the name and the assign
 // values meet the validation criteria of no more than 8 characters and not empty.
 
+function checkAllValid() {
 
-function checkUserName(taskName) {
-    if ((taskName.length < 8) && (taskName.length > 0)) {
-        return true
-    } else { alert("ERROR! There is an error with the task name to input") };
-};
+    let taskName = document.querySelector("#userTaskName").value;
+    let description = document.querySelector("#userDescription").value;
+    let assignedTo = document.querySelector("#userAssignedTo").value;
+    let dueDate = document.querySelector("#userDueDate").value;
+    let status = document.querySelector("#userStatus").value;
 
-function checkAssignedTo(assignedTo) {
-    if ((assignedTo.length < 8) && (assignedTo.length > 0)) {
-        return true
-    } else { alert("ERROR! There is an error with the assigned to input") };
-}
+    let checkTaskName = false;
+    let checkDescription = false;
+    let checkAssignedTo = false;
 
-// Similar to the validation function above, except this function is to check the description input
-// is not empty and longer than 20 characters
+    if (taskName.length > 0 && taskName.length < 8) {
+        checkTaskName = true;
+    } else checkTaskName = console.log("task name false");
 
-function checkDescription(description) {
-    if ((description.length < 20) && description.length > 0) {
-        return checkdescription = true;
-    } else alert("ERROR! There is an error with the description input")
-};
+    if (description.length > 0 && description.length < 20) {
+        checkDescription = true;
+    } else checkDescription = console.log("description false");
 
-function checkAllValid(checkUserName, checkDescription, checkAssignedTo) {
-    if (checkUserName && checkDescription && checkAssignedTo == true) {
-        return true;
+    if ((assignedTo.length > 0 && assignedTo.length < 8)) {
+        checkAssignedTo = true;
+    } else checkAssignedTo = console.log("assign false");
+
+    // (checkTaskName && checkDescription && checkAssignedTo
+
+    if (checkTaskName && checkDescription && checkAssignedTo == true) {
+        checkAllValid = true;
     } else alert('Error! The validation checks failed! Check Inputs!')
-}
-
+};
 
 // The task manager class is used as a source control or middle man iin-between
 // the user inputs and the data output onto the card list.
+
 class TaskManager {
     constructor(taskName, description, assignedTo, dueDate, status) {
         this.taskName = taskName;
@@ -140,4 +137,4 @@ class TaskManager {
         //     });
         // });
     };
-};
+}
