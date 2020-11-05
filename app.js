@@ -1,11 +1,11 @@
 // Get form to take values from the user and check them against input validation requirements as per task planner documentation.
 
 // Create a TaskManager class with the following properties - taskArray = [],  methods - getAllTasks(), getTasksWithStatus(), addtask(), deleteTask(), updateTask(), assignTask()
-// let taskName;
-// let taskDescription;
-// let taskAssignedTo;
-// let taskDueDate;
-// let taskStatus;
+let taskName;
+let taskDescription;
+let taskAssignedTo;
+let taskDueDate;
+let taskStatus;
 
 let taskArray = [];
 
@@ -29,27 +29,31 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
             taskStatus = allStatus[i].value;
         }
     }
-
-    const newCard = `<div class="card">
-    <div class="card-header">
-        <h5>TASK</h5>
-    </div>
-        <ul class="list-group list-group-flush card-space">
-            <li class="list-group-item"><span class="card-ref">Name: </span>${taskName}</li>
-            <li class="list-group-item"><span class="card-ref">Description: </span>${taskDescription}</li>
-            <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskAssignedTo}</li>
-            <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskDueDate}</li>
-            <li class="list-group-item"><span class="card-ref">Status: </span>${taskStatus}</li>
-            </ul>
-    </div>`
-
     let taskBoard = document.querySelector(".Taskboard-List")
 
+    const newCard = `<div class="card" taskID="${taskArray.ID}">
+        <div class="card-header">
+            <h5>TASK</h5>
+        </div>
+            <ul class="list-group list-group-flush card-space">
+                <li class="list-group-item"><span class="card-ref">Name: </span>${taskArray.name}</li>
+                <li class="list-group-item"><span class="card-ref">Description: </span>${taskArray.Description}</li>
+                <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskArray.assignedTo}</li>
+                <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskArray.DueDate}</li>
+                <li class="list-group-item"><span class="card-ref">Status: </span>${taskArray.Status}</li>
+                </ul>
+        </div>`
+
+
+    taskBoard.insertAdjacentHTML(position, newCard);
+
+
     let allChecksPassed = validateInput(taskName, taskAssignedTo, taskDescription, taskStatus, taskDueDate);
-    console.log(allChecksPassed)
+
     if (allChecksPassed == true) {
-        createNewTask(taskName, taskDescription, taskAssignedTo, taskDueDate, taskStatus, taskArray);
-        taskBoard.insertAdjacentHTML(position, newCard)
+        createNewTaskObj(taskName, taskDescription, taskAssignedTo, taskDueDate, taskStatus, taskArray);
+        taskBoard.insertAdjacentHTML(position, newCard);
+        console.log(taskArray);
     } else {
         console.log("input error")
     };
@@ -57,56 +61,68 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
 
 // This is the event listener to clear all cards from the taskboard
 
-document.querySelector("#taskSubmit").addEventListener('click', function() {
-    const clear = document.querySelector("#clear-cards")
-    clear.addEventListener("click", function() {
-        localStorage.clear();
-        location.reload();
-    });
+document.querySelector("#clear-cards").addEventListener('click', function() {
+    localStorage.clear();
+    location.reload();
 });
 
 function validateInput(taskName, taskAssignedTo, taskDescription, taskStatus, taskDueDate) {
     let isAllValid = false;
 
-    console.log(taskDescription.length)
-    console.log(taskDescription)
-
     if (taskDescription.length > 10 && taskName.length >= 3 && taskAssignedTo.length >= 3 && taskStatus && taskDueDate) {
         isAllValid = true;
-        console.log("true working")
     }
     return isAllValid;
 }
 
-function createNewTask(taskName, taskDescription, taskAssignedTo, taskStatus, taskDueDate, taskArray) {
+function createNewTaskObj(taskName, taskDescription, taskAssignedTo, taskStatus, taskDueDate, taskArray) {
     taskArray.push({
-        "name": taskName,
-        "assignedTo": taskAssignedTo,
-        "Description": taskDescription,
-        "DueDate": taskDueDate,
-        "Status": taskStatus,
-        "ID": `${taskArray.length <1 ? 1 : taskArray+1}`
-    })
+            "name": taskName,
+            "Description": taskDescription,
+            "assignedTo": taskAssignedTo,
+            "DueDate": taskDueDate,
+            "Status": taskStatus,
+            "ID": `${taskArray.length < 1 ? 1 : taskArray.length+1}`
+        })
+        // console.log(taskArray) this is used to check the user inputs being pushed into the array
     return taskArray
 }
 
 
-// The task manager class is used as a source control or middle man iin-between
+
+// The task manager class is used as a source control or middle man in-between
 // the user inputs and the data output onto the card list.
 
-class TaskManager {
-    constructor(taskName, description, assignedTo, dueDate, status) {
-        this.taskName = taskName;
-        this.description = description;
-        this.assignedTo = assignedTo;
-        this.dueDate = dueDate;
-        this.status = status;
-        this.taskArray = [];
-        // this.taskID = this.taskArray  
-    }
-    getAllTask() {}
 
-    addTask(createNewTask) {}
+class TaskManager {
+    constructor(taskName) {
+        this.taskName = taskName;
+        this.allMyTask = [];
+    }
+    getAllTask() {
+        console.log(this.allMyTask)
+    }
+
+    addTask(taskArray) {
+        // task passed from the array
+
+        const newCard = `<div class="card" taskID="${taskArray.ID}">
+        <div class="card-header">
+            <h5>TASK</h5>
+        </div>
+            <ul class="list-group list-group-flush card-space">
+                <li class="list-group-item"><span class="card-ref">Name: </span>${taskArray.name}</li>
+                <li class="list-group-item"><span class="card-ref">Description: </span>${taskArray.Description}</li>
+                <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskArray.assignedTo}</li>
+                <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskArray.DueDate}</li>
+                <li class="list-group-item"><span class="card-ref">Status: </span>${taskArray.Status}</li>
+                </ul>
+        </div>`
+
+        let taskBoard = document.querySelector(".Taskboard-List")
+        taskBoard.insertAdjacentHTML(position, newCard);
+
+    }
 
     clearAllTasks() {};
 
@@ -117,4 +133,4 @@ class TaskManager {
 }
 
 
-// let TaskManager = new TaskManager(taskArray);
+let theTaskManager = new TaskManager();
