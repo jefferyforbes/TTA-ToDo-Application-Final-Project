@@ -13,7 +13,6 @@ let taskArray = [];
 // *** At the moment I am not sure if this code works ****
 
 document.querySelector("#taskSubmit").addEventListener('click', function() {
-    const position = "beforeend"
 
     let taskName = document.querySelector("#userTaskName").value;
     let taskDescription = document.querySelector("#userDescription").value;
@@ -29,33 +28,17 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
             taskStatus = allStatus[i].value;
         }
     }
-    let taskBoard = document.querySelector(".Taskboard-List")
-
-    const newCard = `<div class="card" taskID="${taskArray.ID}">
-        <div class="card-header">
-            <h5>TASK</h5>
-        </div>
-            <ul class="list-group list-group-flush card-space">
-                <li class="list-group-item"><span class="card-ref">Name: </span>${taskArray.name}</li>
-                <li class="list-group-item"><span class="card-ref">Description: </span>${taskArray.Description}</li>
-                <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskArray.assignedTo}</li>
-                <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskArray.DueDate}</li>
-                <li class="list-group-item"><span class="card-ref">Status: </span>${taskArray.Status}</li>
-                </ul>
-        </div>`
-
-
-    taskBoard.insertAdjacentHTML(position, newCard);
-
 
     let allChecksPassed = validateInput(taskName, taskAssignedTo, taskDescription, taskStatus, taskDueDate);
 
     if (allChecksPassed == true) {
-        createNewTaskObj(taskName, taskDescription, taskAssignedTo, taskDueDate, taskStatus, taskArray);
-        taskBoard.insertAdjacentHTML(position, newCard);
-        console.log(taskArray);
+        createNewTaskObj(taskName, taskDescription, taskAssignedTo, taskDueDate, taskStatus, theTaskManager.taskManArray);
+        let myTaskIndex = theTaskManager.taskManArray.length - 1;
+        console.log(theTaskManager.taskManArray[myTaskIndex]);
+        console.log(theTaskManager.taskManArray);
+        theTaskManager.addTask(theTaskManager.taskManArray[myTaskIndex]);
     } else {
-        console.log("input error")
+        console.log("input error");
     };
 });
 
@@ -76,18 +59,19 @@ function validateInput(taskName, taskAssignedTo, taskDescription, taskStatus, ta
 }
 
 function createNewTaskObj(taskName, taskDescription, taskAssignedTo, taskStatus, taskDueDate, taskArray) {
-    taskArray.push({
-            "name": taskName,
-            "Description": taskDescription,
-            "assignedTo": taskAssignedTo,
-            "DueDate": taskDueDate,
-            "Status": taskStatus,
-            "ID": `${taskArray.length < 1 ? 1 : taskArray.length+1}`
-        })
-        // console.log(taskArray) this is used to check the user inputs being pushed into the array
-    return taskArray
-}
+    theTaskManager.taskManArray.push({
+        "name": taskName,
+        "Description": taskDescription,
+        "assignedTo": taskAssignedTo,
+        "DueDate": taskDueDate,
+        "Status": taskStatus,
+        "ID": `${taskArray.length < 1 ? 1 : taskArray.length+1}`
+    });
 
+    localStorage.setItem("localStorageTaskArray", JSON.stringify(theTaskManager.taskManArray));
+    return theTaskManager.taskManArray;
+
+}
 
 
 // The task manager class is used as a source control or middle man in-between
@@ -95,16 +79,18 @@ function createNewTaskObj(taskName, taskDescription, taskAssignedTo, taskStatus,
 
 
 class TaskManager {
-    constructor(taskName) {
+    constructor() {
         this.taskName = taskName;
-        this.allMyTask = [];
+        this.taskManArray = [];
     }
     getAllTask() {
-        console.log(this.allMyTask)
+        console.log(this.taskManArray)
     }
 
     addTask(taskArray) {
         // task passed from the array
+
+        const position = "beforeend"
 
         const newCard = `<div class="card" taskID="${taskArray.ID}">
         <div class="card-header">
@@ -119,7 +105,7 @@ class TaskManager {
                 </ul>
         </div>`
 
-        let taskBoard = document.querySelector(".Taskboard-List")
+        let taskBoard = document.querySelector(".Taskboard-List");
         taskBoard.insertAdjacentHTML(position, newCard);
 
     }
