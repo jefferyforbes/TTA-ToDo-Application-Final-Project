@@ -28,7 +28,6 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
     for (let i = 0; i < allStatus.length; i++) {
         if (allStatus[i].checked == true) {
             taskStatus = allStatus[i].value;
-
         }
     }
 
@@ -93,10 +92,6 @@ function createNewTask(taskName, taskDescription, taskAssignedTo, taskStatus, ta
 }
 
 
-
-
-
-
 // The task manager class is used as a source control or middle man iin-between
 // the user inputs and the data output onto the card list.
 
@@ -110,8 +105,9 @@ class TaskManager {
         this.taskArray = [];
         // this.taskID = this.taskArray  
     }
+    getAllTask() {}
 
-    addTask() {
+    addTask(createNewTask) {
         // ---------- THIS METHOD HAS BE TEST AND WORKS ----------
         // document.querySelector("#taskSubmit").addEventListener('click', function() {
         //     const position = "beforeend"
@@ -153,6 +149,12 @@ class TaskManager {
         //     });
         // });
     };
+
+    deleteTask(task) {} //task is a placeholder to take the user selected task
+
+    taskUpdate(taskID, taskStatus) {} // This is a optional functionality and should only be coded and 
+        // implemented once everything else works and is functional.
 }
+
 
 // let TaskManager = new TaskManager(taskArray);
