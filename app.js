@@ -20,22 +20,30 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
     let taskDescription = document.querySelector("#userDescription").value;
     let taskAssignedTo = document.querySelector("#userAssignedTo").value;
     let taskDueDate = document.querySelector("#userDueDate").value;
-    let taskStatus = document.querySelector("#userStatus").value;
+    // let taskStatus = document.querySelector("#userStatus").value;
+    let allStatus = document.querySelectorAll('.form-control.status');
+    let taskStatus;
 
-    console.log(taskDescription.length)
+    // The loop below is used to loop through the length of the radio buttons
+    for (let i = 0; i < allStatus.length; i++) {
+        if (allStatus[i].checked == true) {
+            taskStatus = allStatus[i].value;
 
-    // const newCard = `<div class="card">
-    // <div class="card-header">
-    //     <h5>TASK</h5>
-    // </div>
-    //     <ul class="list-group list-group-flush card-space">
-    //         <li class="list-group-item"><span class="card-ref">Name: </span>${taskName}</li>
-    //         <li class="list-group-item"><span class="card-ref">Description: </span>${taskDescription}</li>
-    //         <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskAssignedTo}</li>
-    //         <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskDueDate}</li>
-    //         <li class="list-group-item"><span class="card-ref">Status: </span>${taskStatus}</li>
-    //         </ul>
-    // </div>`
+        }
+    }
+
+    const newCard = `<div class="card">
+    <div class="card-header">
+        <h5>TASK</h5>
+    </div>
+        <ul class="list-group list-group-flush card-space">
+            <li class="list-group-item"><span class="card-ref">Name: </span>${taskName}</li>
+            <li class="list-group-item"><span class="card-ref">Description: </span>${taskDescription}</li>
+            <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskAssignedTo}</li>
+            <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskDueDate}</li>
+            <li class="list-group-item"><span class="card-ref">Status: </span>${taskStatus}</li>
+            </ul>
+    </div>`
 
     let taskBoard = document.querySelector(".Taskboard-List")
 
@@ -59,13 +67,13 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
     });
 });
 
-function validateInput(taskName, taskAssignedTo, taskDueDate, taskDescription, taskStatus) {
+function validateInput(taskName, taskAssignedTo, taskDescription, taskStatus, taskDueDate) {
     let isAllValid = false;
 
     console.log(taskDescription.length)
     console.log(taskDescription)
 
-    if (taskDescription.length > 10) {
+    if (taskDescription.length > 10 && taskName.length >= 3 && taskAssignedTo.length >= 3 && taskStatus && taskDueDate) {
         isAllValid = true;
         console.log("true working")
     }
