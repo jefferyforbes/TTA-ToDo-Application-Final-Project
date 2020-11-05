@@ -12,7 +12,6 @@ let taskArray = [];
 // The get user input functions is meant to grab the values of the user inputs from the html
 // *** At the moment I am not sure if this code works ****
 
-
 document.querySelector("#taskSubmit").addEventListener('click', function() {
     const position = "beforeend"
 
@@ -107,48 +106,9 @@ class TaskManager {
     }
     getAllTask() {}
 
-    addTask(createNewTask) {
-        // ---------- THIS METHOD HAS BE TEST AND WORKS ----------
-        // document.querySelector("#taskSubmit").addEventListener('click', function() {
-        //     const position = "beforeend"
+    addTask(createNewTask) {}
 
-        //     taskName = document.querySelector("#userTaskName").value;
-        //     taskDescription = document.querySelector("#userDescription").value;
-        //     taskAssignedTo = document.querySelector("#userAssignedTo").value;
-        //     taskDueDate = document.querySelector("#userDueDate").value;
-        //     taskStatus = document.querySelector("#userStatus").value;
-
-        //     const newCard = `<div class="card">
-        //     <div class="card-header">
-        //         <h5>TASK</h5>
-        //     </div>
-        //         <ul class="list-group list-group-flush card-space">
-        //             <li class="list-group-item"><span class="card-ref">Name: </span>${taskName}</li>
-        //             <li class="list-group-item"><span class="card-ref">Description: </span>${taskDescription}</li>
-        //             <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskAssignedTo}</li>
-        //             <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskDueDate}</li>
-        //             <li class="list-group-item"><span class="card-ref">Status: </span>${taskStatus}</li>
-        //             </ul>
-        //     </div>`
-        //     let taskBoard = document.querySelector(".Taskboard-List")
-
-        //     let allChecksPassed = validateInput(taskName, taskAssignedTo, taskDescription, taskStatus);
-        //     if (allChecksPassed == true) {
-        //         taskBoard.insertAdjacentHTML(position, newCard)
-        //     } else {
-        //         console.log("input error")
-        //     };
-        // });        
-        // clearAllTasks() {
-        // -------------- THIS METHOD HAS BE TEST AND WORKS ----------------------
-        // document.querySelector("#taskSubmit").addEventListener('click', function() {
-        //     const clear = document.querySelector("#clear-cards")
-        //     clear.addEventListener("click", function() {
-        //         localStorage.clear();
-        //         location.reload();
-        //     });
-        // });
-    };
+    clearAllTasks() {};
 
     deleteTask(task) {} //task is a placeholder to take the user selected task
 
