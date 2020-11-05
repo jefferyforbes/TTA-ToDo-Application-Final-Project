@@ -1,11 +1,11 @@
 // Get form to take values from the user and check them against input validation requirements as per task planner documentation.
 
 // Create a TaskManager class with the following properties - taskArray = [],  methods - getAllTasks(), getTasksWithStatus(), addtask(), deleteTask(), updateTask(), assignTask()
-let taskName;
-let taskDescription;
-let taskAssignedTo;
-let taskDueDate;
-let taskStatus;
+// let taskName;
+// let taskDescription;
+// let taskAssignedTo;
+// let taskDueDate;
+// let taskStatus;
 
 let taskArray = [];
 
@@ -22,23 +22,27 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
     let taskDueDate = document.querySelector("#userDueDate").value;
     let taskStatus = document.querySelector("#userStatus").value;
 
-    const newCard = `<div class="card">
-    <div class="card-header">
-        <h5>TASK</h5>
-    </div>
-        <ul class="list-group list-group-flush card-space">
-            <li class="list-group-item"><span class="card-ref">Name: </span>${taskName}</li>
-            <li class="list-group-item"><span class="card-ref">Description: </span>${taskDescription}</li>
-            <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskAssignedTo}</li>
-            <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskDueDate}</li>
-            <li class="list-group-item"><span class="card-ref">Status: </span>${taskStatus}</li>
-            </ul>
-    </div>`
+    console.log(taskDescription.length)
+
+    // const newCard = `<div class="card">
+    // <div class="card-header">
+    //     <h5>TASK</h5>
+    // </div>
+    //     <ul class="list-group list-group-flush card-space">
+    //         <li class="list-group-item"><span class="card-ref">Name: </span>${taskName}</li>
+    //         <li class="list-group-item"><span class="card-ref">Description: </span>${taskDescription}</li>
+    //         <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskAssignedTo}</li>
+    //         <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskDueDate}</li>
+    //         <li class="list-group-item"><span class="card-ref">Status: </span>${taskStatus}</li>
+    //         </ul>
+    // </div>`
+
     let taskBoard = document.querySelector(".Taskboard-List")
 
-    let allChecksPassed = validateInput(taskName, taskAssignedTo, taskDescription, taskStatus);
+    let allChecksPassed = validateInput(taskName, taskAssignedTo, taskDescription, taskStatus, taskDueDate);
+    console.log(allChecksPassed)
     if (allChecksPassed == true) {
-        createNewTask(taskName, taskDescription, taskAssignedTo, taskStatus, taskStatus, taskArray);
+        createNewTask(taskName, taskDescription, taskAssignedTo, taskDueDate, taskStatus, taskArray);
         taskBoard.insertAdjacentHTML(position, newCard)
     } else {
         console.log("input error")
@@ -53,28 +57,29 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
         localStorage.clear();
         location.reload();
     });
-
 });
 
-
-function validateInput(taskName, taskAssignedTo, taskDescription, taskStatus) {
+function validateInput(taskName, taskAssignedTo, taskDueDate, taskDescription, taskStatus) {
     let isAllValid = false;
 
-    if ((taskName.length >= 3 && taskAssignedTo.length >= 3 && taskDescription.length >= 10 && taskDueDate) && taskStatus != "") {
+    console.log(taskDescription.length)
+    console.log(taskDescription)
+
+    if (taskDescription.length > 10) {
         isAllValid = true;
+        console.log("true working")
     }
     return isAllValid;
 }
 
-
-function createNewTask(taskName, taskDescription, taskAssignedTo, taskStatus, taskStatus, taskArray) {
+function createNewTask(taskName, taskDescription, taskAssignedTo, taskStatus, taskDueDate, taskArray) {
     taskArray.push({
         "name": taskName,
         "assignedTo": taskAssignedTo,
         "Description": taskDescription,
         "DueDate": taskDueDate,
         "Status": taskStatus,
-        "ID": `${taskArray.length<1 ? 1 : taskArray+1}`
+        "ID": `${taskArray.length <1 ? 1 : taskArray+1}`
     })
     return taskArray
 }
