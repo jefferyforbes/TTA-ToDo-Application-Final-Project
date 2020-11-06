@@ -16,8 +16,8 @@ document.addEventListener("click", function(btnClick) {
     const clickPurpose = btnClick.target;
     // console.log(clickPurpose); for testing
 
-    let cardElementID = clickPurpose.parentNode.parentNode.attributes.taskID.value; // this will hold the value of the button the two parent levels above (the card itself) in cardElement
-    // console.log(cardElementID)
+    // console.log(cardElementID);
+    theTaskManager.deleteTask(clickPurpose);
 });
 
 document.querySelector("#taskSubmit").addEventListener('click', function() {
@@ -117,9 +117,19 @@ class TaskManager {
         taskBoard.insertAdjacentHTML(position, newCard);
     };
 
+    deleteTask(clickPurpose) {
 
+        let cardElementID = clickPurpose.parentNode.parentNode.attributes.taskID.value; // this will hold the value of the button the two parent levels above (the card itself) in cardElement
 
-    deleteTask() {} //task is a placeholder to take the user selected task
+        for (let i = 0; i < this.taskManArray.length; i++) {
+            if (this.taskManArray[i].ID == cardElementID) {
+                this.taskManArray.splice(i, 1)
+            }
+        }
+        clickPurpose.parentNode.parentNode.parentNode.removeChild(clickPurpose.parentNode.parentNode)
+        localStorage.setItem("localStorageTaskArray", JSON.stringify(theTaskManager.taskManArray));
+
+    }
 
     // taskUpdate(taskID, taskStatus) {}; // This is a optional functionality and should only be coded and 
     // implemented once everything else works and is functional.
