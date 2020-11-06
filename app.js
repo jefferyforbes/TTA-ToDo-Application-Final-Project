@@ -12,6 +12,14 @@ let taskArray = [];
 // The get user input functions is meant to grab the values of the user inputs from the html
 // *** At the moment I am not sure if this code works ****
 
+document.addEventListener("click", function(btnClick) {
+    const clickPurpose = btnClick.target;
+    // console.log(clickPurpose); for testing
+
+    let cardElementID = clickPurpose.parentNode.parentNode.attributes.taskID.value; // this will hold the value of the button the two parent levels above (the card itself) in cardElement
+    // console.log(cardElementID)
+});
+
 document.querySelector("#taskSubmit").addEventListener('click', function() {
 
     let taskName = document.querySelector("#userTaskName").value;
@@ -101,6 +109,7 @@ class TaskManager {
                 <li class="list-group-item"><span class="card-ref">Assign To: </span>${taskArray.assignedTo}</li>
                 <li class="list-group-item"><span class="card-ref">Due Date: </span>${taskArray.DueDate}</li>
                 <li class="list-group-item"><span class="card-ref">Status: </span>${taskArray.Status}</li>
+                <button type="button" class="btn btn-danger" taskID=${taskArray.ID}>Delete Card</button>
                 </ul>
         </div>`
 
@@ -108,15 +117,16 @@ class TaskManager {
         taskBoard.insertAdjacentHTML(position, newCard);
     };
 
-    clearAllTasks() {};
 
-    deleteTask(task) {} //task is a placeholder to take the user selected task
 
-    taskUpdate(taskID, taskStatus) {} // This is a optional functionality and should only be coded and 
-        // implemented once everything else works and is functional.
-}
+    deleteTask() {} //task is a placeholder to take the user selected task
+
+    // taskUpdate(taskID, taskStatus) {}; // This is a optional functionality and should only be coded and 
+    // implemented once everything else works and is functional.
+};
 
 let theTaskManager = new TaskManager();
+
 
 // The code below populates the page with tasks if the conditional statement finds any in the local storage
 let dataReturned = localStorage.getItem("localStorageTaskArray");
@@ -126,10 +136,11 @@ if (dataReturned) {
     storedTasks(theTaskManager.taskManArray)
 } else {
     theTaskManager.taskManArray = [];
-}
+};
 
+// the storedTask function loops through the taskmanarray in the local storage and automatically add them back to the taskboard list
 function storedTasks(taskManArray) {
     for (let i = 0; i < taskManArray.length; i++) {
         theTaskManager.addTask(taskManArray[i]);
-    }
-}
+    };
+};
