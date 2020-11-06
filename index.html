@@ -5,11 +5,12 @@
     <meta charset="utf-8">
     <title>ToDo Application</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel=" stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet " href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css " integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2 " crossorigin="anonymous ">
 </head>
 
 <body>
+    <H1 class=Top-Title>ToDo Application</H1>
 
     <!-- <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">Well done!</h4>
@@ -18,65 +19,72 @@
         <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
     </div> -->
 
-    <form>
-        <!-- The form below is for the user to input new tasks todo with a choice of varying status. Name, Description, AssignedTo, DueDate, Status) -->
-        <div class="col margin-bottom5">
-            <div class="form-group">
-                <label for="task-name">Name of task:</label>
-                <input type="text" class="form-control" id="userTaskName">
+    <!-- <button id="hide-show-btn"></button> -->
+    <div class="task-container">
+        <form class="user-inputs">
+            <!-- The form below is for the user to input new tasks todo with a choice of varying status. Name, Description, AssignedTo, DueDate, Status) -->
+            <div class="col margin-bottom5">
+                <div class="form-group">
+                    <label for="task-name">Name of task:</label>
+                    <input type="text" class="form-control" id="userTaskName">
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Description:</label>
+                    <input type="text" class="form-control" id="userDescription">
+                </div>
+                <div class="form-group">
+                    <label for="task-assign">Assign:</label>
+                    <input type="text" class="form-control" id="userAssignedTo">
+                </div>
+                <div class="form-group radio-choice">
+                    <label for="task-due-date">Due Date:</label>
+                    <input type="date" class="form-control" id="userDueDate">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="task-description">Description:</label>
-                <input type="text" class="form-control" id="userDescription">
-            </div>
-            <div class="form-group">
-                <label for="task-assign">Assign:</label>
-                <input type="text" class="form-control" id="userAssignedTo">
-            </div>
-            <div class="form-group radio-choice">
-                <label for="task-due-date">Due Date:</label>
-                <input type="date" class="form-control" id="userDueDate">
-            </div>
-        </div>
-        </div>
 
-        <!--The radio button choices are below-->
-        <div class="row-lg-1">
-            <div class="row radio-status">
-                <div class="form-group radio-choice">
-                    <input type="radio" name="task-status" value="ToDo" class="form-control status">
-                    <label for="task-ToDo">To Do:</label>
-                </div>
-                <div class="form-group radio-choice">
-                    <input type="radio" name="task-status" value="In Progress" class="form-control status">
-                    <label for="task-in-progress">In Progress:</label>
-                </div>
-                <div class="form-group radio-choice">
-                    <input type="radio" name="task-status" value="review" class="form-control status">
-                    <label for="task-review">Review:</label>
-                </div>
-                <div class="form-group radio-choice">
-                    <input type="radio" name="task-status" value="Done" class="form-control status">
-                    <label for="task-done">Done:</label>
-                </div>
-            </div>
-        </div>
 
-        <button type="button" class="btn btn-primary margin-bottom10" id="taskSubmit" btn-purpose="submit-card">Submit</button>
-    </form>
-    <div class="Taskboard-List row" id="Taskboard-List">
-        <div class="card">
-            <div class="card-header">
-                <h5>TASK</h5>
+            <!--The radio button choices are below-->
+            <div class="row-lg-1">
+                <div class="row radio-status">
+                    <div class="form-group radio-choice">
+                        <input type="radio" name="task-status" value="ToDo" class="form-control status">
+                        <label for="task-ToDo">To Do:</label>
+                    </div>
+                    <div class="form-group radio-choice">
+                        <input type="radio" name="task-status" value="In Progress" class="form-control status">
+                        <label for="task-in-progress">In Progress:</label>
+                    </div>
+                    <div class="form-group radio-choice">
+                        <input type="radio" name="task-status" value="review" class="form-control status">
+                        <label for="task-review">Review:</label>
+                    </div>
+                    <div class="form-group radio-choice">
+                        <input type="radio" name="task-status" value="Done" class="form-control status">
+                        <label for="task-done">Done:</label>
+                    </div>
+                </div>
             </div>
-            <ul class="list-group list-group-flush card-space">
-                <li class="list-group-item"><span class="card-ref">Name: </span>Cras justo odio</li>
-                <li class="list-group-item"><span class="card-ref">Description: </span>Dapibus ac facilisis in</li>
-                <li class="list-group-item"><span class="card-ref">Assign To: </span>Vestibulum at eros</li>
-                <li class="list-group-item"><span class="card-ref">Due Date: </span>Vessdadaulum at eros</li>
-                <li class="list-group-item"><span class="card-ref">Status: </span>Vestibulum at eros</li>
-                <button type="button" class="btn btn-danger" btn-purpose="delete-card">Delete Card</button>
-            </ul>
+
+            <button type="button" class="btn btn-primary margin-bottom10" id="taskSubmit" btn-purpose="submit-card">Submit</button>
+        </form>
+
+        <hr>
+        <hr>
+
+        <div class="Taskboard-List row" id="Taskboard-List">
+            <div class="card">
+                <div class="card-header">
+                    <h5>TASK</h5>
+                </div>
+                <ul class="list-group list-group-flush card-space">
+                    <li class="list-group-item"><span class="card-ref">Name: </span>Cras justo odio</li>
+                    <li class="list-group-item"><span class="card-ref">Description: </span>Dapibus ac facilisis in</li>
+                    <li class="list-group-item"><span class="card-ref">Assign To: </span>Vestibulum at eros</li>
+                    <li class="list-group-item"><span class="card-ref">Due Date: </span>Vessdadaulum at eros</li>
+                    <li class="list-group-item"><span class="card-ref">Status: </span>Vestibulum at eros</li>
+                    <button type="button" class="btn btn-danger" btn-purpose="delete-card">Delete Card</button>
+                </ul>
+            </div>
         </div>
     </div>
     <button type="button" class="btn btn-primary margin-bottom10" id="clear-cards" btn-purpose="delete-all-card">Clear Cards</button>

@@ -5,14 +5,17 @@
 }
 
 body {
-    width: 100%;
-    margin: 1rem;
+    width: 85%;
+    margin: 2rem;
+    padding: 5rem;
+    color: seashell;
 }
 
 .radio-status {
     display: flex;
     margin-bottom: 1rem;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    width: 30%;
 }
 
 .margin-top5 {
@@ -41,8 +44,8 @@ body {
 }
 
 #clear-cards {
-    margin: 5rem;
-    margin-top: 3rem;
+    margin: 2rem;
+    margin-top: 1rem;
 }
 
 .card {
@@ -60,10 +63,25 @@ body {
 
 .Taskboard-List {
     display: flex;
-    height: auto;
+    height: 100%;
     margin: 2rem;
     justify-content: center;
     overflow-y: hidden;
-    width: 101%;
-    background-color: rgb(68, 67, 67);
+    width: 100%;
+}
+
+.user-inputs {
+    width: 100%;
+    justify-content: space-around;
+    color: seashell;
+}
+
+.task-container {
+    background: url(img/pexels-anna-tarazevich-5629220.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    width: 70%;
+    padding: 2rem;
+    border-radius: 12rem;
 }

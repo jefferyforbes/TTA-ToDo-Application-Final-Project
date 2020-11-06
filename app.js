@@ -61,6 +61,7 @@ document.querySelector("#clear-cards").addEventListener('click', function() {
 
 function validateInput(taskName, taskAssignedTo, taskDescription, taskStatus, taskDueDate) {
     let isAllValid = false;
+    // This functions essentially validates the user 
 
     if (taskDescription.length > 10 && taskName.length >= 3 && taskAssignedTo.length >= 3 && taskStatus && taskDueDate) {
         isAllValid = true;
@@ -154,3 +155,18 @@ function storedTasks(taskManArray) {
         theTaskManager.addTask(taskManArray[i]);
     };
 };
+
+
+
+
+//////////////////////////////
+// function hideShow() {
+//     let learnMoreBtn = document.querySelector("btn btn-primary")
+//     let learnMoreSection = document.getElementById("learn-more-section")
+//     if (learnMoreSection.style.display === "none") {
+//         learnMoreSection.style.display = "block";
+//     } else {
+//         learnMoreSection.style.display = "none"
+//     };
+// };
+///////////////////////////
