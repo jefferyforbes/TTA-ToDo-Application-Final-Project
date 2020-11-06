@@ -34,8 +34,10 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
     if (allChecksPassed == true) {
         createNewTaskObj(taskName, taskDescription, taskAssignedTo, taskDueDate, taskStatus, theTaskManager.taskManArray);
         let myTaskIndex = theTaskManager.taskManArray.length - 1;
-        console.log(theTaskManager.taskManArray[myTaskIndex]);
-        console.log(theTaskManager.taskManArray);
+
+        // console.log(theTaskManager.taskManArray[myTaskIndex]);
+        // console.log(theTaskManager.taskManArray);  ---->>>>> These were used to test the incrementing of the id attached to the task cards
+
         theTaskManager.addTask(theTaskManager.taskManArray[myTaskIndex]);
     } else {
         console.log("input error");
@@ -70,13 +72,10 @@ function createNewTaskObj(taskName, taskDescription, taskAssignedTo, taskStatus,
 
     localStorage.setItem("localStorageTaskArray", JSON.stringify(theTaskManager.taskManArray));
     return theTaskManager.taskManArray;
-
 }
-
 
 // The task manager class is used as a source control or middle man in-between
 // the user inputs and the data output onto the card list.
-
 
 class TaskManager {
     constructor() {
@@ -107,8 +106,7 @@ class TaskManager {
 
         let taskBoard = document.querySelector(".Taskboard-List");
         taskBoard.insertAdjacentHTML(position, newCard);
-
-    }
+    };
 
     clearAllTasks() {};
 
@@ -118,5 +116,20 @@ class TaskManager {
         // implemented once everything else works and is functional.
 }
 
-
 let theTaskManager = new TaskManager();
+
+// The code below populates the page with tasks if the conditional statement finds any in the local storage
+let dataReturned = localStorage.getItem("localStorageTaskArray");
+
+if (dataReturned) {
+    theTaskManager.taskManArray = JSON.parse(dataReturned);
+    storedTasks(theTaskManager.taskManArray)
+} else {
+    theTaskManager.taskManArray = [];
+}
+
+function storedTasks(taskManArray) {
+    for (let i = 0; i < taskManArray.length; i++) {
+        theTaskManager.addTask(taskManArray[i]);
+    }
+}

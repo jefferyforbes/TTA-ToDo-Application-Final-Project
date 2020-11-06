@@ -44,25 +44,25 @@
         <div class="row-lg-1">
             <div class="row radio-status">
                 <div class="form-group radio-choice">
-                    <input type="radio" name="task-status" value="ToDo" class="form-control status" >
+                    <input type="radio" name="task-status" value="ToDo" class="form-control status">
                     <label for="task-ToDo">To Do:</label>
                 </div>
                 <div class="form-group radio-choice">
-                    <input type="radio" name="task-status" value="In Progress" class="form-control status" >
+                    <input type="radio" name="task-status" value="In Progress" class="form-control status">
                     <label for="task-in-progress">In Progress:</label>
                 </div>
                 <div class="form-group radio-choice">
-                    <input type="radio" name="task-status" value="review" class="form-control status" >
+                    <input type="radio" name="task-status" value="review" class="form-control status">
                     <label for="task-review">Review:</label>
                 </div>
                 <div class="form-group radio-choice">
-                    <input type="radio" name="task-status" value="Done" class="form-control status" >
+                    <input type="radio" name="task-status" value="Done" class="form-control status">
                     <label for="task-done">Done:</label>
                 </div>
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary margin-bottom10" id="taskSubmit">Submit</button>
+        <button type="button" class="btn btn-primary margin-bottom10" id="taskSubmit" btn-purpose="submit-card">Submit</button>
     </form>
     <div class="Taskboard-List row" id="Taskboard-List">
         <div class="card">
@@ -75,10 +75,10 @@
                 <li class="list-group-item"><span class="card-ref">Assign To: </span>Vestibulum at eros</li>
                 <li class="list-group-item"><span class="card-ref">Due Date: </span>Vessdadaulum at eros</li>
                 <li class="list-group-item"><span class="card-ref">Status: </span>Vestibulum at eros</li>
-            </ul>
+                <button type="button" class="btn btn-danger" btn-purpose="delete-card">Delete Card</button> </ul>
         </div>
     </div>
-    <button type="button" class="btn btn-primary margin-bottom10" id="clear-cards">Clear Cards</button>
+    <button type="button" class="btn btn-primary margin-bottom10" id="clear-cards" btn-purpose="delete-all-card">Clear Cards</button>
     <footer>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js " integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
