@@ -9,6 +9,14 @@ body {
     margin: 2rem;
     padding: 5rem;
     color: seashell;
+    background: url(img/pexels-anna-tarazevich-5629220.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
+h1 {
+    color: seashell;
 }
 
 .radio-status {
@@ -77,10 +85,6 @@ body {
 }
 
 .task-container {
-    background: url(img/pexels-anna-tarazevich-5629220.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: center;
     width: 70%;
     padding: 2rem;
     border-radius: 12rem;
