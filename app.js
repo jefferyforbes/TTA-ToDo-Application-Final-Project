@@ -1,6 +1,5 @@
 // Get form to take values from the user and check them against input validation requirements as per task planner documentation.
 
-// Create a TaskManager class with the following properties - taskArray = [],  methods - getAllTasks(), getTasksWithStatus(), addtask(), deleteTask(), updateTask(), assignTask()
 let taskName;
 let taskDescription;
 let taskAssignedTo;
@@ -9,11 +8,9 @@ let taskStatus;
 
 let taskArray = [];
 
-// The get user input functions is meant to grab the values of the user inputs from the html
-// *** At the moment I am not sure if this code works ****
-
 document.addEventListener("click", function(btnClick) {
     const clickPurpose = btnClick.target;
+    //The click purpose is meant to take the HTML element itself and attributes on click to determine if the button is written to add or delete the tasks
     // console.log(clickPurpose); for testing
 
     // console.log(cardElementID);
@@ -26,7 +23,6 @@ document.querySelector("#taskSubmit").addEventListener('click', function() {
     let taskDescription = document.querySelector("#userDescription").value;
     let taskAssignedTo = document.querySelector("#userAssignedTo").value;
     let taskDueDate = document.querySelector("#userDueDate").value;
-    // let taskStatus = document.querySelector("#userStatus").value;
     let allStatus = document.querySelectorAll('.form-control.status');
     let taskStatus;
 
@@ -65,6 +61,7 @@ function validateInput(taskName, taskAssignedTo, taskDescription, taskStatus, ta
 
     if (taskDescription.length > 10 && taskName.length >= 3 && taskAssignedTo.length >= 3 && taskStatus && taskDueDate) {
         isAllValid = true;
+        // The if statement checks that all the valdiation meet the program's requirements before proceeding
     }
     return isAllValid;
 }
@@ -155,18 +152,3 @@ function storedTasks(taskManArray) {
         theTaskManager.addTask(taskManArray[i]);
     };
 };
-
-
-
-
-//////////////////////////////
-// function hideShow() {
-//     let learnMoreBtn = document.querySelector("btn btn-primary")
-//     let learnMoreSection = document.getElementById("learn-more-section")
-//     if (learnMoreSection.style.display === "none") {
-//         learnMoreSection.style.display = "block";
-//     } else {
-//         learnMoreSection.style.display = "none"
-//     };
-// };
-///////////////////////////
